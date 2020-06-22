@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests">
+
+    <listeners>
+        <listener class-name="com.Listeners"></listener>
+    </listeners>
+
+    <test name="Wrong Login Sign In">
+        <classes>
+            <class name="com.LogInWrongData"/>
+        </classes>
+    </test>
+
+    <test name="Url validation">
+        <classes>
+            <class name="com.urlValidation"/>
+        </classes>
+    </test>
+
+    <test name="Men T-shirt Sale">
+        <classes>
+            <class name="com.MenTshirtSale"/>
+        </classes>
+    </test>
+
+</suite>

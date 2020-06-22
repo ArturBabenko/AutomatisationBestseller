@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+ 
+  <Appenders>
+      <RollingFile name="File" fileName="/Users/arthurbabenko/Documents/Testing/Java/Bestseller/reports/logs/log.log"
+                   filePattern="/Users/arthurbabenko/Documents/Testing/Java/Bestseller/reports/logs/log-%d{yyyy-MM-dd}.log">
+     <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      <SizeBasedTriggeringPolicy size="500" />
+          </RollingFile>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+  </Appenders>
+    
+  <Loggers>
+    <Root level="trace">
+      <AppenderRef ref="File"/>
+    </Root>
+  </Loggers>
+</Configuration>
