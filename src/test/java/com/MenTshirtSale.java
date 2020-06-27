@@ -41,7 +41,7 @@ public class MenTshirtSale extends Skeleton {
         menPage.twoForTShort().click();
         for (int i = 1; i <= menPage.itemCount(menPage.itemOnPage().getText()); i++) {
             driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/div[3]/main[1]/div[7]/div[3]/div["+i+"]/article[1]/figure[1]/a[1]/img[1]")).click();
-        //step by step xpath allow me to use fori for all items check
+        //step by step xpath allow me to use fori for all items check available on page
 
         wdw.until(ExpectedConditions.visibilityOf(menPage.priceOneElement()));
         String priceOneElement = menPage.priceOneElement().getText();
@@ -58,7 +58,10 @@ public class MenTshirtSale extends Skeleton {
         String priceTwoElements = menPage.priceTwoElements().getText();
         Assert.assertTrue(menPage.priceCompare(priceOneElement,priceTwoElements));
         driver.findElement(By.xpath("//button[@value='Usuń']")).click();
-        menPage = lp.mensChoose();
+        lp.mensChoose();
+        lp.mensChoose();
+        //second click because some times appears pop-up window for non registered user
+            //do not have to check before test is popup appeared and close it
         menPage.twoForTShort().click();
         }
     }
