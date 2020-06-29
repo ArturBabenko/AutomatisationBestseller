@@ -27,8 +27,6 @@ public class MenTshirtSale extends Skeleton {
         driver = seleniumDriver();
         driver.manage().window().maximize();
         driver.get(properties.getProperty("url"));
-        driver.findElement(By.xpath("//button[@class='cookie-overlay__close js-cookie-overlay__close']")).click();
-
     }
 
     @Test
@@ -37,9 +35,14 @@ public class MenTshirtSale extends Skeleton {
 
         WebDriverWait wdw = new WebDriverWait(driver, 6);
         LandingPage lp = new LandingPage(driver);
+        lp.popupCookie().click();
         pageObjects.MenPage menPage = lp.mensChoose();
+        menPage.clubPopup();
         menPage.twoForTShort().click();
-        for (int i = 1; i <= menPage.itemCount(menPage.itemOnPage().getText()); i++) {
+        //for (int i = 1; i <= menPage.itemCount(menPage.itemOnPage().getText()); i++) {
+        // uncomment above and you can test all elements on page
+        for (int i = 1; i <= 10; i++) {
+            // just make testing for first 10 elements, to make it faster
             driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/div[3]/main[1]/div[7]/div[3]/div["+i+"]/article[1]/figure[1]/a[1]/img[1]")).click();
         //step by step xpath allow me to use fori for all items check available on page
 
@@ -47,7 +50,7 @@ public class MenTshirtSale extends Skeleton {
         String priceOneElement = menPage.priceOneElement().getText();
         wdw.until(ExpectedConditions.visibilityOf(menPage.sizeSelect()));
         menPage.sizeSelect().click();
-        wdw.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='swatch size' and li[contains(@class, 'swatch__item--selected')]]")));
+            wdw.until(ExpectedConditions.visibilityOf(menPage.sizeSelected()));
         // hm.. dynamic class name.. done! ;)
         menPage.cartAdd().click();
         Thread.sleep(2000);
@@ -57,7 +60,8 @@ public class MenTshirtSale extends Skeleton {
         Thread.sleep(3000);
         String priceTwoElements = menPage.priceTwoElements().getText();
         Assert.assertTrue(menPage.priceCompare(priceOneElement,priceTwoElements));
-        driver.findElement(By.xpath("//button[@value='Usuń']")).click();
+        pageObjects.CartPage cartPage = lp.cartChoose();
+        cartPage.itemRemove().click();
         lp.mensChoose();
         lp.mensChoose();
         //second click because some times appears pop-up window for non registered user
@@ -65,18 +69,6 @@ public class MenTshirtSale extends Skeleton {
         menPage.twoForTShort().click();
         }
     }
-
-    /*
-    @DataProvider
-    public Object[] getItem() {
-        Object[] data = new Object[4];
-        data[0] = "a[data-itemid*='5714487615996']";
-        data[1] = "a[data-itemid*='5714487615958']";
-        data[2] = "a[data-itemid*='5714499687400']";
-        data[3] = "a[data-itemid*='5714912447949']";
-        return data;
-    }
-     */
 
     @AfterTest
     public void closeWindow() {

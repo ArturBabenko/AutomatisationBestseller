@@ -16,6 +16,9 @@ public class LoginPage {
     private By loginButton = By.name("dwfrm_login_login");
     private By loginError = By.xpath("//div[@class='login__form-error']");
     private By doNotRememberPass = By.xpath("//a[@class='login__link-passwordreset']");
+    private By isLogin = By.xpath("//a[@title='Wyloguj się']");
+    private String expectedMsg = "Niestety, to nie pasuje do naszych rekordów. Sprawdź pisownię i spróbuj ponownie.";
+
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -40,6 +43,11 @@ public class LoginPage {
     public String loginError(){
         return driver.findElement(loginError).getText();
     }
+
+    public WebElement isLogin() {return driver.findElement(isLogin);}
+
+    public String expectedMsg() {return expectedMsg;}
+
 
     public ForgotPassword forgotPassword() {
         driver.findElement(doNotRememberPass).click();

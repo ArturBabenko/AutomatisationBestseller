@@ -23,13 +23,13 @@ public class urlValidation extends Skeleton {
         log.info("Driver initialized");
         driver.manage().window().maximize();
         driver.get(properties.getProperty("url"));
-       log.info("Url navigation");
+        log.info("Url navigation");
     }
 
     @Test
     public void urlValidation()  {
 
-        Assert.assertEquals(driver.getTitle(),"Shop fashion | Find this season's trends on BESTSELLER.CO");
+        Assert.assertEquals(driver.getTitle(),"Shop fashion | Find this season's trends on BESTSELLER.COM");
         //LandingPage landingPage = new LandingPage(driver);
         //Assert.assertFalse(landingPage.errorPage().isDisplayed());
         log.info("Page title successfully equals");
