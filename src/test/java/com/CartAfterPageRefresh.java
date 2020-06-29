@@ -22,32 +22,30 @@ public class CartAfterPageRefresh extends Skeleton {
         driver = seleniumDriver();
         driver.manage().window().maximize();
         driver.get(properties.getProperty("url"));
-        driver.findElement(By.xpath("//button[@class='cookie-overlay__close js-cookie-overlay__close']")).click();
-
     }
 
     @Test
-    public void itemInCartAfterLogIn() throws InterruptedException {
+    public void itemInCartAfterRefresh() throws InterruptedException {
 
         WebDriverWait wdw = new WebDriverWait(driver, 6);
         LandingPage lp = new LandingPage(driver);
+        lp.popupCookie().click();
         pageObjects.MenPage menPage = lp.mensChoose();
-
-        driver.findElement(By.xpath("//button[@class='customer-club-popup__close js-customer-club--close']"));
+        menPage.clubPopup();
         Actions akt = new Actions(driver);
-        akt.moveToElement(driver.findElement(By.xpath("//span[@data-menu-category='bc-men-shoes']"))).build().perform();
-        driver.findElement(By.xpath("//a[contains(@href, 'flip-flops')]")).click();
-        driver.findElement(By.xpath("//img[@data-itemid='5714506910354']")).click();
+        akt.moveToElement(menPage.menShoesPopUp()).build().perform();
+        menPage.menFlipFlop().click();
+        menPage.flipFlopItem01().click();
         menPage.sizeSelect().click();
-        wdw.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='swatch size' and li[contains(@class, 'swatch__item--selected')]]")));
+        wdw.until(ExpectedConditions.visibilityOf(menPage.sizeSelect()));
+        Thread.sleep(2000);
         menPage.cartAdd().click();
         Thread.sleep(2000);
-        driver.findElement(By.xpath("//a[@title='Przejdź do koszyka']")).click();
+        pageObjects.CartPage cartPage = lp.cartChoose();
         driver.get(properties.getProperty("url"));
-        driver.findElement(By.xpath("//a[@title='Przejdź do koszyka']")).click();
-        Assert.assertTrue(driver.findElement(By.xpath("//span[@class='cart-item__content--reduced value']")).isDisplayed());
-
-
+        lp.cartChoose();
+        Assert.assertTrue(cartPage.cartContainsValue().isDisplayed());
+        Assert.assertEquals(cartPage.cartContainsValue().getText(),"5714506910354");
     }
 
     @AfterTest

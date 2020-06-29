@@ -26,20 +26,19 @@ public class LogInWrongData extends Skeleton {
         driver = seleniumDriver();
         driver.manage().window().maximize();
         driver.get(properties.getProperty("url"));
-        driver.findElement(By.xpath("//button[@class='cookie-overlay__close js-cookie-overlay__close']")).click();
         LandingPage lp = new LandingPage(driver);
+        lp.popupCookie().click();
         LoginPage loginPage = lp.login();
         loginPage.emailInput().sendKeys(email);
         loginPage.passwordInput().sendKeys(password);
         loginPage.rememberBox().click();
         loginPage.loginButton().click();
        // Log.info("Button clicked");
-        Assert.assertEquals(loginPage.loginError(), "Niestety, to nie pasuje do " +
-                "naszych rekordów. Sprawdź pisownię i spróbuj ponownie.");
+        Assert.assertEquals(loginPage.loginError(), loginPage.expectedMsg());
         //Log.info("Error message should displays");
 
        ForgotPassword fp = loginPage.forgotPassword();
-       fp.emailInput().sendKeys("abc@cda.com");
+       fp.emailInput().sendKeys(email);
        fp.sendButton().click();
 
     }

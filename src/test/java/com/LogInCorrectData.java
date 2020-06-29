@@ -21,21 +21,21 @@ public class LogInCorrectData extends Skeleton {
     //public static Logger log = LogManager.getLogger(Skeleton.class.getName());
 
     @Test(dataProvider = "getData")
-    public void LogInWrongData(String email, String password) throws IOException {
+    public void loginCorrectData(String email, String password) throws IOException {
         driver = seleniumDriver();
         driver.manage().window().maximize();
         driver.get(properties.getProperty("url"));
-        driver.findElement(By.xpath("//button[@class='cookie-overlay__close js-cookie-overlay__close']")).click();
         WebDriverWait wdw = new WebDriverWait(driver, 6);
         LandingPage lp = new LandingPage(driver);
+        lp.popupCookie().click();
         LoginPage loginPage = lp.login();
         loginPage.emailInput().sendKeys(email);
         loginPage.passwordInput().sendKeys(password);
         loginPage.rememberBox().click();
         loginPage.loginButton().click();
 
-        wdw.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//a[@title='Wyloguj się']"))));
-        Assert.assertTrue(driver.findElement(By.xpath("//a[@title='Wyloguj się']")).isDisplayed());
+        wdw.until(ExpectedConditions.visibilityOf(loginPage.isLogin()));
+        Assert.assertTrue(loginPage.isLogin().isDisplayed());
 
 
     }

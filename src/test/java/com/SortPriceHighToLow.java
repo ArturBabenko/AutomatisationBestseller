@@ -23,38 +23,28 @@ public class SortPriceHighToLow extends Skeleton {
         driver = seleniumDriver();
         driver.manage().window().maximize();
         driver.get(properties.getProperty("url"));
-        driver.findElement(By.xpath("//button[@class='cookie-overlay__close js-cookie-overlay__close']")).click();
-
-    }
+       }
 
     @Test
     public void priceHighToLow() throws InterruptedException {
 
         WebDriverWait wdw = new WebDriverWait(driver, 6);
         LandingPage lp = new LandingPage(driver);
+        lp.popupCookie().click();
         pageObjects.MenPage menPage = lp.mensChoose();
-
-        driver.findElement(By.xpath("//button[@class='customer-club-popup__close js-customer-club--close']"));
+        menPage.clubPopup();
         Actions akt = new Actions(driver);
-        akt.moveToElement(driver.findElement(By.xpath("//span[@data-menu-category='bc-men-fashion']"))).build().perform();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("/html[1]/body[1]/div[1]/header[1]/div[1]/div[7]/div[2]/div[37]/div[11]/div[1]/div[3]/a[1]")).click();
-        //wdw.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//aside[@class='plp__refine']//select"))));
-        Thread.sleep(2000);
-        Select s = new Select(driver.findElement(By.xpath("//div[@class='search-options-bar js-search-options-bar']//div[@class='sorting-controls']//select")));
-        s.selectByValue("https://shop.bestseller.com/pl/pl/bc/men/clothing/jeans/?srule=SSO_Price-high-to-low&start=0&sz=60");
-        Thread.sleep(2000);
-        String a = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/div[3]/main[1]/div[7]/div[3]/div[1]/article[1]/div[1]/p[2]/em[1]")).getText();
-        String b = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/div[3]/main[1]/div[7]/div[3]/div[4]/article[1]/div[1]/p[2]/em[1]")).getText();
+        akt.moveToElement(menPage.menClothing()).build().perform();
+        wdw.until(ExpectedConditions.visibilityOf(menPage.menJeansPopUp()));
+        menPage.menJeansPopUp().click();
+        wdw.until(ExpectedConditions.visibilityOf(menPage.sortSelect()));
+        Select s = new Select(menPage.sortSelect());
+        s.selectByValue(menPage.selectValue());
+        String a = menPage.firstItemPrice().getText();
+        String b = menPage.fourItemPrice().getText();
         Assert.assertTrue(menPage.priceHighToLow(a,b));
-
-
     }
-    
 
     @AfterTest
     public void closeWindow() { driver.close(); }
-
-
-
 }
