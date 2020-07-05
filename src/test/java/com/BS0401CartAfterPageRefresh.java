@@ -14,7 +14,7 @@ import resources.Skeleton;
 
 import java.io.IOException;
 
-public class Whishlist extends Skeleton {
+public class BS0401CartAfterPageRefresh extends Skeleton {
     public WebDriver driver;
 
     @BeforeTest
@@ -22,11 +22,10 @@ public class Whishlist extends Skeleton {
         driver = seleniumDriver();
         driver.manage().window().maximize();
         driver.get(properties.getProperty("url"));
-
     }
 
     @Test
-    public void whishlistCheck() throws InterruptedException {
+    public void itemInCartAfterRefresh() throws InterruptedException {
 
         WebDriverWait wdw = new WebDriverWait(driver, 6);
         LandingPage lp = new LandingPage(driver);
@@ -36,24 +35,20 @@ public class Whishlist extends Skeleton {
         Actions akt = new Actions(driver);
         akt.moveToElement(menPage.menShoesPopUp()).build().perform();
         menPage.menFlipFlop().click();
-        menPage.flipFlopHeart().click();
-        menPage.menSandals().click();
-        wdw.until(ExpectedConditions.visibilityOf(menPage.sandalsHeart()));
-        menPage.sandalsHeart().click();
-        menPage.menClothingMenu().click();
-        menPage.menJeans().click();
-        wdw.until(ExpectedConditions.visibilityOf(menPage.jeansHeart()));
-        menPage.jeansHeart().click();
-        pageObjects.WhishlistPage whishlistPage = lp.whishlistChoose();
-
-        Assert.assertTrue(whishlistPage.whishlistHeart1().isDisplayed());
-        Assert.assertTrue(whishlistPage.whishlistHeart2().isDisplayed());
-        Assert.assertTrue(whishlistPage.whishlistHeart3().isDisplayed());
-
+        menPage.flipFlopItem01().click();
+        menPage.sizeSelect().click();
+        wdw.until(ExpectedConditions.visibilityOf(menPage.sizeSelect()));
+        Thread.sleep(2000);
+        menPage.cartAdd().click();
+        Thread.sleep(2000);
+        pageObjects.CartPage cartPage = lp.cartChoose();
+        driver.get(properties.getProperty("url"));
+        lp.cartChoose();
+        Assert.assertTrue(cartPage.cartContainsValue().isDisplayed());
+        Assert.assertEquals(cartPage.cartContainsValue().getText(),"5714506910354");
     }
 
     @AfterTest
-    public void closeWindow() {
-        driver.close();
-    }
+    public void closeWindow() { driver.close(); }
+
 }

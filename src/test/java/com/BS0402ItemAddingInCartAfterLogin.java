@@ -15,7 +15,7 @@ import resources.Skeleton;
 
 import java.io.IOException;
 
-public class ItemAddingInCartAfterLogin extends Skeleton {
+public class BS0402ItemAddingInCartAfterLogin extends Skeleton {
     public WebDriver driver;
 
     @BeforeTest

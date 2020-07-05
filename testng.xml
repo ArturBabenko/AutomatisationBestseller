@@ -8,67 +8,67 @@
 
     <test name="Wrong Login Sign In">
         <classes>
-            <class name="com.LogInWrongData"/>
+            <class name="com.BS0103LogInWrongData"/>
         </classes>
     </test>
 
     <test name="Login correct email and password">
         <classes>
-            <class name="com.LogInCorrectData"/>
+            <class name="com.BS0101LogInCorrectData"/>
         </classes>
     </test>
 
     <test name="Url validation">
         <classes>
-            <class name="com.urlValidation"/>
+            <class name="com.BS0301urlValidation"/>
         </classes>
     </test>
 
     <test name="Men T-shirt Sale">
         <classes>
-            <class name="com.MenTshirtSale"/>
+            <class name="com.BS0601MenTshirtSale"/>
         </classes>
     </test>
 
     <test name="Whishlist validation">
         <classes>
-            <class name="com.Whishlist"/>
+            <class name="com.BS0901Whishlist"/>
         </classes>
     </test>
 
     <test name="Items in cart after page refresh">
         <classes>
-            <class name="com.CartAfterPageRefresh"/>
+            <class name="com.BS0401CartAfterPageRefresh"/>
         </classes>
     </test>
 
     <test name="Items in cart after login">
         <classes>
-            <class name="com.ItemAddingInCartAfterLogin"/>
+            <class name="com.BS0402ItemAddingInCartAfterLogin"/>
         </classes>
     </test>
 
     <test name="Kids popup dropdown menu">
         <classes>
-            <class name="com.KidsDropDownMenu"/>
+            <class name="com.BS0501KidsDropDownMenu"/>
         </classes>
     </test>
 
     <test name="Women dresses filtr">
         <classes>
-            <class name="com.WomenDressesFiltrs"/>
+            <class name="com.BS1001WomenDressesFiltrs"/>
         </classes>
     </test>
 
     <test name="Sort price from High to Low">
         <classes>
-            <class name="com.SortPriceHighToLow"/>
+            <class name="com.BS0801SortPriceHighToLow"/>
         </classes>
     </test>
 
     <test name="Payment wrong card number as Login user">
         <classes>
-            <class name="com.PaymentLogInWrongCard"/>
+            <class name="com.BS0701PaymentLogInWrongCard"/>
         </classes>
     </test>
 

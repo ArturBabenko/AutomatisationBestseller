@@ -16,7 +16,7 @@ import resources.Skeleton;
 import java.io.IOException;
 
 
-public class LogInCorrectData extends Skeleton {
+public class BS0101LogInCorrectData extends Skeleton {
     public WebDriver driver;
     //public static Logger log = LogManager.getLogger(Skeleton.class.getName());
 

@@ -17,7 +17,7 @@ import resources.Skeleton;
 
 import java.io.IOException;
 
-public class PaymentLogInWrongCard extends Skeleton {
+public class BS0701PaymentLogInWrongCard extends Skeleton {
     public WebDriver driver;
 
     @BeforeTest

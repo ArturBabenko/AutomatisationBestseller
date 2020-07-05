@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pageObjects.ForgotPassword;
 import pageObjects.LandingPage;
 import pageObjects.LoginPage;
 import resources.Skeleton;
@@ -13,7 +12,7 @@ import resources.Skeleton;
 import java.io.IOException;
 
 
-public class BS112LogInWrongEmail extends Skeleton {
+public class BS0104LogInWrongEmailAndPass extends Skeleton {
     public WebDriver driver;
     //public static Logger log = LogManager.getLogger(Skeleton.class.getName());
 
@@ -41,9 +40,9 @@ public class BS112LogInWrongEmail extends Skeleton {
     public Object[][] getData() {
     Object[][] data = new Object[2][2];
     data[0][0] = "bestsellerseleniumW@mailinator.com";
-    data[0][1] = "123456";
+    data[0][1] = "123456W";
     data[1][0] = "adminbestsellerseleniumW@mailinator.com";
-    data[1][1] = "123456";
+    data[1][1] = "123456W";
 
     return data;
 

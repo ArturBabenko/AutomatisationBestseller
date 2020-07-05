@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pageObjects.ForgotPassword;
 import pageObjects.LandingPage;
 import pageObjects.LoginPage;
 import resources.Skeleton;
@@ -12,12 +13,12 @@ import resources.Skeleton;
 import java.io.IOException;
 
 
-public class BS115LogInEmptyEmailAndPass extends Skeleton {
+public class BS0108ForgotPassCorrectEmail extends Skeleton {
     public WebDriver driver;
     //public static Logger log = LogManager.getLogger(Skeleton.class.getName());
 
-    @Test
-    public void LogInWrongData() throws IOException {
+    @Test(dataProvider = "getData")
+    public void LogInWrongData(String email) throws IOException {
 
         driver = seleniumDriver();
         driver.manage().window().maximize();
@@ -25,11 +26,19 @@ public class BS115LogInEmptyEmailAndPass extends Skeleton {
         LandingPage lp = new LandingPage(driver);
         lp.popupCookie().click();
         LoginPage loginPage = lp.login();
-        loginPage.rememberBox().click();
-        loginPage.loginButton().click();
-       // Log.info("Button clicked");
-        Assert.assertEquals(loginPage.emptyField(), loginPage.emptyErrMsg());
-        //Log.info("Error message should displays");
+
+       ForgotPassword fp = loginPage.forgotPassword();
+       fp.emailInput().sendKeys(email);
+       fp.sendButton().click();
+       Assert.assertEquals(fp.sendTextConfirm(), fp.sendConfirmation());
+    }
+
+    @DataProvider
+
+    public Object[] getData() {
+    Object[] data = new Object[1];
+    data[0] = "bestsellerselenium@mailinator.com";
+    return data;
 
     }
 

@@ -15,7 +15,7 @@ import resources.Skeleton;
 
 import java.io.IOException;
 
-public class KidsDropDownMenu extends Skeleton {
+public class BS0501KidsDropDownMenu extends Skeleton {
     public WebDriver driver;
     //public static Logger log = LogManager.getLogger(Skeleton.class.getName());
 
