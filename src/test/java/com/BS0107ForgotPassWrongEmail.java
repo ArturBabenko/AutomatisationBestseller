@@ -13,7 +13,7 @@ import resources.Skeleton;
 import java.io.IOException;
 
 
-public class BS116ForgotPassEmptyEmail extends Skeleton {
+public class BS0107ForgotPassWrongEmail extends Skeleton {
     public WebDriver driver;
     //public static Logger log = LogManager.getLogger(Skeleton.class.getName());
 
@@ -30,14 +30,14 @@ public class BS116ForgotPassEmptyEmail extends Skeleton {
        ForgotPassword fp = loginPage.forgotPassword();
        fp.emailInput().sendKeys(email);
        fp.sendButton().click();
-        Assert.assertEquals(fp.emptyField(), fp.emptyFieldErrText());
+       Assert.assertEquals(fp.emptyField(), fp.wrongEmailTypeText());
     }
 
     @DataProvider
 
     public Object[] getData() {
     Object[] data = new Object[1];
-    data[0] = "";
+    data[0] = "bestsellerselenium.mailinator.com";
     return data;
 
     }

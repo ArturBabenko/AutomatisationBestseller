@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
-public class MenTshirtSale extends Skeleton {
+public class BS0601MenTshirtSale extends Skeleton {
     public WebDriver driver;
     //public static Logger log = LogManager.getLogger(Skeleton.class.getName());
 

@@ -16,6 +16,7 @@ public WebDriver driver;
     private By popupCookie = By.xpath("//button[@class='cookie-overlay__close js-cookie-overlay__close']");
     private By whishlist = By.xpath("//a[@title='Lista życzeń']");
     private By cart = By.xpath("//a[@title='Przejdź do koszyka']");
+    private By search = By.xpath("//button[@class='search__submit']");
 
     public LandingPage(WebDriver driver) {
         this.driver = driver;
@@ -70,5 +71,12 @@ public WebDriver driver;
         driver.findElement(cart).click();
         OrderPage orderPage = new OrderPage(driver);
         return orderPage;
+    }
+
+    public SearchPage searchChoose() {
+
+        driver.findElement(search).click();
+        SearchPage searchPage = new SearchPage(driver);
+        return searchPage;
     }
 }

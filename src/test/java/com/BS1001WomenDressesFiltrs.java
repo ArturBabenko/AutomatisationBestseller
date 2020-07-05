@@ -17,7 +17,7 @@ import resources.Skeleton;
 import java.io.IOException;
 
 
-public class WomenDressesFiltrs extends Skeleton {
+public class BS1001WomenDressesFiltrs extends Skeleton {
     public WebDriver driver;
     //public static Logger log = LogManager.getLogger(Skeleton.class.getName());
 

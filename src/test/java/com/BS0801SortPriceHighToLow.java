@@ -15,7 +15,7 @@ import resources.Skeleton;
 
 import java.io.IOException;
 
-public class SortPriceHighToLow extends Skeleton {
+public class BS0801SortPriceHighToLow extends Skeleton {
     public WebDriver driver;
 
     @BeforeTest

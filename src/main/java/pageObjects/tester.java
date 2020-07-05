@@ -20,11 +20,20 @@ public class tester {
         if (!(2*oneItem == twoItem)) System.out.println(true);
 
          */
+        /*
         String abc = "Sztuk 29";
         String[] parts = abc.split(" ");
         String part2 = parts[1];
         int abcInt = Integer.parseInt(part2);
         System.out.println(abcInt);
 
+         */
+
+            String a = "0";
+
+            for (int i = 0; i < 256; i++) {
+                a+=i;
+            }
+        System.out.println(a);
     }
 }

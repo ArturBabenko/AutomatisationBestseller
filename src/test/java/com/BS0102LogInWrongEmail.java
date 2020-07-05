@@ -13,12 +13,12 @@ import resources.Skeleton;
 import java.io.IOException;
 
 
-public class BS118ForgotPassCorrectEmail extends Skeleton {
+public class BS0102LogInWrongEmail extends Skeleton {
     public WebDriver driver;
     //public static Logger log = LogManager.getLogger(Skeleton.class.getName());
 
     @Test(dataProvider = "getData")
-    public void LogInWrongData(String email) throws IOException {
+    public void LogInWrongData(String email, String password) throws IOException {
 
         driver = seleniumDriver();
         driver.manage().window().maximize();
@@ -26,18 +26,25 @@ public class BS118ForgotPassCorrectEmail extends Skeleton {
         LandingPage lp = new LandingPage(driver);
         lp.popupCookie().click();
         LoginPage loginPage = lp.login();
+        loginPage.emailInput().sendKeys(email);
+        loginPage.passwordInput().sendKeys(password);
+        loginPage.rememberBox().click();
+        loginPage.loginButton().click();
+       // Log.info("Button clicked");
+        Assert.assertEquals(loginPage.loginError(), loginPage.expectedMsg());
+        //Log.info("Error message should displays");
 
-       ForgotPassword fp = loginPage.forgotPassword();
-       fp.emailInput().sendKeys(email);
-       fp.sendButton().click();
-       Assert.assertEquals(fp.sendTextConfirm(), fp.sendConfirmation());
     }
 
     @DataProvider
 
-    public Object[] getData() {
-    Object[] data = new Object[1];
-    data[0] = "bestsellerselenium@mailinator.com";
+    public Object[][] getData() {
+    Object[][] data = new Object[2][2];
+    data[0][0] = "bestsellerseleniumW@mailinator.com";
+    data[0][1] = "123456";
+    data[1][0] = "adminbestsellerseleniumW@mailinator.com";
+    data[1][1] = "123456";
+
     return data;
 
     }
