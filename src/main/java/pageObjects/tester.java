@@ -28,12 +28,9 @@ public class tester {
         System.out.println(abcInt);
 
          */
-
-            String a = "0";
-
-            for (int i = 0; i < 256; i++) {
-                a+=i;
-            }
-        System.out.println(a);
+    }
+    public boolean wordSearch(String sentence, String word) {
+        if ( sentence.toLowerCase().indexOf(word.toLowerCase()) != -1 ) { return true; }
+        else { return false; }
     }
 }
